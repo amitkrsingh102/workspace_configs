@@ -1,7 +1,7 @@
 require "nvchad.mappings"
 local map = vim.keymap.set
 
--- CPP compiling mappings
+-- C++ compile & run
 map("n", "<leader>q", function()
   local file = vim.fn.expand "%"
   local output = vim.fn.expand "%:r"
@@ -15,5 +15,12 @@ map("i", "jk", "<ESC>")
 -- Diffview mappings
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Git diff view" })
 map("n", "<leader>gq", "<cmd>DiffviewClose<CR>", { desc = "Close Git diff view" })
+map("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git file history" })
+
+-- Git UI
+map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Git UI" })
+
+-- Git blame
+map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Git blame line" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
