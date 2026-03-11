@@ -50,5 +50,32 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.opt.diffopt:append "algorithm:histogram"
 vim.opt.diffopt:append "linematch:60"
 
+vim.o.updatetime = 250
+
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  severity_sort = true,
+}
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    vim.diagnostic.config {
+      virtual_text = false,
+    }
+  end,
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, {
+      focus = false,
+      border = "rounded",
+      source = true,
+    })
+  end,
+})
+
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!

@@ -23,4 +23,13 @@ map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Git UI" })
 -- Git blame
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Git blame line" })
 
+map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end)
+map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end)
+
+map("n", "]e", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end)
+map("n", "[e", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end)
+
+map("n", "]w", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end)
+map("n", "[w", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN }) end)
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
