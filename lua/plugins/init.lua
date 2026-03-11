@@ -46,9 +46,14 @@ return {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
     },
-    config = true,
+    config = function()
+      require("neogit").setup {
+        integrations = {
+          diffview = true,
+        },
+      }
+    end,
   },
-
   -- Merge conflict helper
   {
     "akinsho/git-conflict.nvim",
