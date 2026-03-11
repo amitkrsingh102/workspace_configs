@@ -1,23 +1,36 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    -- event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
   },
+
   {
     "nvim-tree/nvim-tree.lua",
     opts = function()
       local conf = require "nvchad.configs.nvimtree"
-      conf.view.width = 50 -- Set your preferred width
+
+      conf.view.width = 50
+
+      -- ensure tables exist before modifying
+      conf.filters = conf.filters or {}
+      conf.git = conf.git or {}
+
+      -- show .env and other dotfiles
+      conf.filters.dotfiles = false
+      conf.git.ignore = false
+
       return conf
     end,
   },
+
   {
     "sindrets/diffview.nvim",
     cmd = {
@@ -54,6 +67,7 @@ return {
       }
     end,
   },
+
   -- Merge conflict helper
   {
     "akinsho/git-conflict.nvim",
@@ -76,7 +90,9 @@ return {
   -- React / JS snippets
   {
     "L3MON4D3/LuaSnip",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
   },
 
   -- Faster TypeScript tooling
@@ -94,6 +110,7 @@ return {
     "dmmulroy/tsc.nvim",
     cmd = "TSC",
   },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
