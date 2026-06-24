@@ -126,7 +126,55 @@ return {
         "javascript",
         "typescript",
         "tsx",
-        "prisma"
+        "prisma",
+      },
+    },
+  },
+  {
+    "coder/claudecode.nvim",
+    event = "VeryLazy",
+    cmd = {
+      "ClaudeCode",
+      "ClaudeCodeFocus",
+      "ClaudeCodeSend",
+      "ClaudeCodeAdd",
+      "ClaudeCodeDiffAccept",
+      "ClaudeCodeDiffDeny",
+      "ClaudeCodeSelectModel",
+      "ClaudeCodeStatus",
+    },
+    opts = {
+      focus_after_send = true,
+      terminal = {
+        provider = "native",
+        split_side = "right",
+        split_width_percentage = 0.35,
+        auto_close = true,
+      },
+    },
+  },
+
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    opts = {
+      suppressed_dirs = { "~/", "/" },
+    },
+  },
+
+  -- Render CSV/TSV files as an aligned table
+  {
+    "hat0uma/csvview.nvim",
+    ft = { "csv", "tsv" },
+    cmd = {
+      "CsvViewToggle",
+      "CsvViewEnable",
+      "CsvViewDisable",
+    },
+    opts = {
+      parser = { comments = { "#", "//" } },
+      view = {
+        display_mode = "border",
       },
     },
   },

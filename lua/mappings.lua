@@ -23,6 +23,9 @@ map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Git UI" })
 -- Git blame
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Git blame line" })
 
+-- CSV table view
+map("n", "<leader>cv", "<cmd>CsvViewToggle<CR>", { desc = "Toggle CSV table view" })
+
 -- diagnostics navigation
 map("n", "]d", function()
   vim.diagnostic.jump { count = 1 }
@@ -63,3 +66,22 @@ map("n", "[w", function()
 end, { desc = "Previous warning" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- Claude Code
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("n", "<leader>ac", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
+map("n", "<leader>af", "<cmd>ClaudeCodeFocus<cr>", { desc = "Focus Claude" })
+map("n", "<leader>ar", "<cmd>ClaudeCode --resume<cr>", { desc = "Resume Claude" })
+map("n", "<leader>aC", "<cmd>ClaudeCode --continue<cr>", { desc = "Continue Claude" })
+map("n", "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", { desc = "Select Claude model" })
+map("n", "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", { desc = "Add current buffer" })
+map("v", "<leader>as", "<cmd>ClaudeCodeSend<cr>", { desc = "Send to Claude" })
+map("n", "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", { desc = "Accept diff" })
+map("n", "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+  callback = function()
+    map("n", "<leader>as", "<cmd>ClaudeCodeTreeAdd<cr>", { desc = "Add file to Claude", buffer = true })
+  end,
+})
